@@ -1,0 +1,23 @@
+FROM ubuntu:20.04
+
+MAINTAINER vetalsmith
+ 
+# Apache ENVs
+
+ARG DEBIAN_FRONTEND="noninteractive"
+ARG DEBCONF_NOWARNINGS="yes"
+ARG DEBCONF_TERSE="yes"
+ARG APT="apt-get -qq -y"
+ARG LANG="C.UTF-8"
+
+#INSTALL
+
+RUN apt-get update
+RUN apt-get install -y nginx
+RUN apt-get install -y curl
+
+# Expose HTTP
+EXPOSE 80
+
+# Launch NGINX
+CMD ["nginx", "-g", "daemon off;"]
